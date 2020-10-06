@@ -1,0 +1,30 @@
+@font-face {
+    font-family: satisfy;
+    src: url(./font/Satisfy-Regular.ttf);
+}
+
+@font-face {
+    font-family: alegreya;
+    src: url(./font/Alegreya-Regular.ttf);
+}
+
+.img-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+h1 {
+    text-align: center;
+    font-family: satisfy;
+    font-size: 50;
+}
+
+p {
+    font-family: alegreya;
+}
+
+#img-frontpage {
+    width: 20%;
+}
