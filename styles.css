@@ -43,3 +43,8 @@ p {
     overflow: auto;
     white-space: nowrap;
 }
+
+a {
+    color: blue;
+    text-decoration: underline;
+}

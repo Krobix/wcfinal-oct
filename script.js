@@ -3,6 +3,13 @@ var bgp = document.getElementById("background-p");
 var timeline = document.getElementById("timeline");
 var colors = ["blue", "red", "yellow", "pink", "violet", "purple", "magenta", "teal"];
 var timeline_entries = [];
+var onclickfs = [];
+
+function getTmpF(obj) {
+    return function(){
+        obj.show();
+    };
+}
 
 class TimelineEntry {
     constructor(year, elemid) {
@@ -10,11 +17,12 @@ class TimelineEntry {
         this.element = document.getElementById(elemid);
         this.element.className = ".tentry";
         this.elemid = elemid;
+        this.button = null;
     }
 
     show() {
         setupTimeline();
-        this.element.style.display = "initial";
+        this.element.style.display = "inline";
     }
 }
 
@@ -29,18 +37,46 @@ function bgHeaderRandomColor(){
 
 function addEvent(year, elemid){
     timeline_entries.push(new TimelineEntry(year, elemid));
+    console.log(timeline_entries);
 }
 
 function setupTimeline() {
-    timeline_entries = timeline_entries.sort(function(a, b){return b.year-a.year});
+    timeline_entries = timeline_entries.sort(function(a, b){return a.year-b.year});
+    console.log("setupTimeline() called");
+    onclickfs = [];
     timeline.innerHTML = "";
-    timeline_entries.forEach(function(val){
+    timeline_entries.forEach(function(val, index){
+        console.log(`val: ${val}`);
         val.element.style.display = "none";
-        timeline.innerHTML += `<a id=${val.elemid}-b>${val.year}</a>`
-        document.getElementById(`${val.elemid}-b`).onclick = function(){val.show()};
+        timeline.innerHTML += `<button id="${val.elemid}-b">${val.year}</button>`;
+        val.button = document.getElementById(`${val.elemid}-b`);
+        console.log("VAL2");
+        console.log(`${val.elemid}`);
+        //val.button.onclick();
+        timeline_entries[index] = val;
     });
+    /* onclickfs.forEach(function(val, index){
+        try {
+            console.log(index);
+            console.log(timeline_entries[index].year);
+            console.log(timeline_entries[index].button);
+            timeline_entries[index].button.onclick = val;
+        }
+        catch(e) {
+            console.log(e);
+        }
+    }); */
+
+    for (i = 0; i < timeline_entries.length; i++) {
+        val = timeline_entries[i];
+        document.getElementById(`${val.elemid}-b`).onclick = getTmpF(val);
+    } 
 }
 
-addEvent(5000, "timeline-test0");
+//addEvent(5000, "timeline-birth");
+addEvent(1729, "timeline-birth");
+addEvent(1796, "timeline-death");
+addEvent(1745, "timeline-marriage");
+addEvent(1762, "timeline-peterd");
 setInterval(bgHeaderRandomColor, 100);
 setupTimeline();
