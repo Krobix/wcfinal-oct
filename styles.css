@@ -34,7 +34,7 @@ p {
     width: 20%;
 }
 
-#background-p {
+#background-p, #quotep {
     background-color: rgb(247, 137, 247);
     border: 2px solid red;
 }
