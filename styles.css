@@ -8,7 +8,7 @@
     src: url(./font/Alegreya-Regular.ttf);
 }
 
-.img-center {
+img {
     display: block;
     margin-left: auto;
     margin-right: auto;
